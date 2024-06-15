@@ -175,31 +175,31 @@
     "query_key": "industry"
   },
   {
+    "count": 3,
     "acv": 49880,
-    "Total_Quantity": null,
-    "count": 3,
+    "closed_fiscal_quarter": "2023-Q3",
     "Acct_Industry": "Others",
-    "closed_fiscal_quarter": "2023-Q3"
+    "Total_Quantity": null
   },
   {
-    "acv": 3000,
-    "Total_Quantity": null,
     "count": 1,
+    "acv": 3000,
+    "closed_fiscal_quarter": "2024-Q1",
     "Acct_Industry": "Others",
-    "closed_fiscal_quarter": "2024-Q1"
+    "Total_Quantity": null
   },
   {
-    "acv": 0,
-    "Total_Quantity": 0,
     "count": 0,
+    "acv": 0,
+    "closed_fiscal_quarter": "2024-Q2",
     "Acct_Industry": "Others",
-    "closed_fiscal_quarter": "2024-Q2"
+    "Total_Quantity": 0
   },
   {
-    "acv": 39225.93,
-    "Total_Quantity": null,
     "count": 3,
+    "acv": 39225.93,
+    "closed_fiscal_quarter": "2023-Q4",
     "Acct_Industry": "Others",
-    "closed_fiscal_quarter": "2023-Q4"
+    "Total_Quantity": null
   }
 ]
