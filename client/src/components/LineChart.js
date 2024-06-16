@@ -33,6 +33,7 @@ const LineChart = ({ data }) => {
 
         svg.append('g').call(xAxis);
         svg.append('g').call(yAxis);
+        svg.attr("overflow", "visible");
 
         const line = d3.line()
             .defined(d => !isNaN(d.value))

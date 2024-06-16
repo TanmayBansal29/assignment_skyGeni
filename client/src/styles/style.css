@@ -8,3 +8,13 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     pointer-events: none;
 }
+
+.flex-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.acv-card {
+    flex-direction: column;
+}

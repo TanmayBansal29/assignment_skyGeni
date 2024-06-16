@@ -1,10 +1,15 @@
+import { Card, Grid } from "@mui/material";
 import ACVRangeChartComponent from "./components/ACVRangeChartComponent";
 
 function App() {
   return (
-    <div>
-      <ACVRangeChartComponent />
-    </div>
+    <Grid>
+      <Grid>
+      <Card sx={{margin: 6}}>
+        <ACVRangeChartComponent />
+      </Card>
+      </Grid>
+    </Grid>
   );
 }
 

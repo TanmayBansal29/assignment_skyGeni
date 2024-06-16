@@ -14,6 +14,7 @@ const BarChart = ({ data }) => {
         const height = 300;
         const margin = { top: 20, right: 30, bottom: 30, left: 40 };
 
+
         const x = d3.scaleBand()
             .domain(data.map(d => d.key))
             .range([margin.left, width - margin.right])
@@ -34,6 +35,7 @@ const BarChart = ({ data }) => {
 
         svg.append('g').call(xAxis);
         svg.append('g').call(yAxis);
+        svg.attr("overflow-y", "visible");
 
         const tooltip = d3.select('body').append('div')
             .attr('class', 'tooltip')
