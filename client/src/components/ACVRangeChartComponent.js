@@ -12,7 +12,7 @@ import "../styles/style.css";
 const ACVRangeChartComponent = () => {
   const url = "http://localhost:3000/api/v1/acvRangeData";
   const data2 = useFetchData(url);
-  console.log("previous Data" , data2)
+  //console.log("previous Data" , data2)
 
   const updateData = () => {
     let obj = {};

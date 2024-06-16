@@ -1,17 +1,20 @@
-import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
+import React, { useEffect, useRef, useState } from "react";
 import "../../styles/style.css";
 
 const StackedBarChart = ({ data, keys, colors, width = 800, height = 400 }) => {
+//   const [tooltipContent, setTooltipContent] = useState(null);
   const svgRef = useRef();
-
   useEffect(() => {
     if (data.length === 0) return;
 
     const svg = d3.select(svgRef.current);
+    const width = +svg.attr('width');
+    const height = +svg.attr('height');
     svg.selectAll("*").remove(); // Clear existing chart
 
     const margin = { top: 20, right: 30, bottom: 40, left: 40 };
+
 
     const x = d3
       .scaleBand()
@@ -53,31 +56,38 @@ const StackedBarChart = ({ data, keys, colors, width = 800, height = 400 }) => {
       .call(d3.axisBottom(x).tickSizeOuter(0))
       .attr("transform", `translate(0,${height - margin.bottom})`);
 
-    const tooltip = d3.select('body').append('div')
-            .attr('class', 'tooltip')
-            .style('position', 'absolute')
-            .style('visibility', 'hidden')
-            .style('background-color', 'white')
-            .style('border', 'solid 1px #ddd')
-            .style('padding', '10px')
-            .style('border-radius', '4px')
-            .style('box-shadow', '0px 0px 10px rgba(0, 0, 0, 0.1)');
-    svg
-      .selectAll("rect")
-      .on("mouseover", (event, d) => {
-        tooltip.style("visibility", "visible").text(`Value: ${d.key}`);
-      })
-      .on("mousemove", (event) => {
-        tooltip
-          .style("top", `${event.pageY - 10}px`)
-          .style("left", `${event.pageX + 10}px`);
-      })
-      .on("mouseout", () => {
-        tooltip.style("visibility", "hidden");
-      });
+    // const tooltip = d3.select(svgRef.current.parentNode).append('div')
+    //     .attr('class', 'tooltip')
+    //     .style('opacity', 0);
+
+    //     svg.selectAll('.bar-group')
+    //     .data(data)
+    //     .enter().append('g')
+    //       .attr('class', 'bar-group')
+    //     .selectAll('rect')
+    //     .data(d => d.groups)
+    //     .enter().append('rect')
+    //       .attr('class', 'bar')
+    //       .attr('fill', d => color(d.group))
+    //       .on('mouseover', (event, d) => {
+    //         setTooltipContent(`${d.group}: ${d.value}`);
+    //         tooltip.transition()
+    //           .duration(200)
+    //           .style('opacity', .9);
+    //       })
+    //       .on('mousemove', (event) => {
+    //         tooltip.style('left', `${event.pageX}px`)
+    //           .style('top', `${event.pageY - 28}px`);
+    //       })
+    //       .on('mouseout', () => {
+    //         setTooltipContent(null);
+    //         tooltip.transition()
+    //           .duration(500)
+    //           .style('opacity', 0);
+    //       });
 
       svg.selectAll('g')
-      .data(data)
+      .data(stackedData)
       .enter().append('g')
       .attr('fill', d => color(d.key))
       .selectAll('text')
@@ -93,7 +103,7 @@ const StackedBarChart = ({ data, keys, colors, width = 800, height = 400 }) => {
 
       svg.append('g')
       .selectAll('g')
-      .data(data)
+      .data(stackedData)
       .join('g')
       .attr('fill', d => color(d.key))
       .selectAll('text')
@@ -107,9 +117,7 @@ const StackedBarChart = ({ data, keys, colors, width = 800, height = 400 }) => {
       .attr('fill', 'white')
       .text(d => {
         const value = d[1] - d[0];
-        const total = d.data['Existing Customer'] + d.data['New Customer'];
-        const percentage = (value / total * 100).toFixed(0);
-        return `${d3.format("$.2s")(value)} (${percentage}%)`;
+        return `${d3.format("$.2s")(value)}`;
       });
 
       svg.append('g')
@@ -124,6 +132,11 @@ const StackedBarChart = ({ data, keys, colors, width = 800, height = 400 }) => {
 
   return (
     <>
+    {/* {tooltipContent && (
+        <div className="tooltip">
+          {tooltipContent}
+        </div>
+      )} */}
       <svg
         ref={svgRef}
         width={width}

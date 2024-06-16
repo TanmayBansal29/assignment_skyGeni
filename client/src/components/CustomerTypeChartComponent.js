@@ -1,13 +1,13 @@
-import useFetchData from '../utils/useFetchData';
+import { Card, CardContent, Grid, Typography } from '@mui/material';
 import * as d3 from 'd3';
+import useFetchData from '../utils/useFetchData';
 import DonutChart from './charts/DonutChart';
 import StackedBarChart from './charts/StackedChart';
-import { Card, CardContent, Grid, Typography } from '@mui/material';
 
 const CustomerTypeChartComponent = () => {
   const url = "http://localhost:3000/api/v1/customerTypeData";
   const data2 = useFetchData(url)
-  console.log(data2)
+  //console.log(data2)
 
   const updateD = () => {
     let obj = {};
@@ -28,7 +28,7 @@ const CustomerTypeChartComponent = () => {
     return {
       closed_fiscal_quarter: quarter,
       'Existing Customer': existing.acv,
-      'New Customer': existing.acv
+      'New Customer': newCust.acv
     }
   })
 
@@ -36,22 +36,22 @@ const CustomerTypeChartComponent = () => {
   const colors = ['#1f77b4', '#ff7f0e'];
 
   let obj = updateD();
-  console.log("Second Obj", obj)
+  //console.log("Second Obj", obj)
 
   let valObj = Object.values(obj)
-  console.log(valObj)
+  //console.log(valObj)
 
   const sumVals = valObj.reduce((acc, curr) => {
     acc = acc + curr
     return acc;
   }, 0)
-  console.log(sumVals)
+  //console.log(sumVals)
 
   const arrayOfObjects2 = Object.entries(obj).map(([key, value]) => {
     let percentageValues = Math.round((+value / sumVals) * 100)
     return {key, value: percentageValues}
   })
-  console.log(arrayOfObjects2)
+  //console.log(arrayOfObjects2)
 
 
   return(
@@ -59,7 +59,7 @@ const CustomerTypeChartComponent = () => {
       <Grid container spacing={3} justifyContent="center" alignItems="center">
         <Grid item xs={12} md={12} lg={12} className="flex-card">
           <Typography variant='h3' padding={4}>
-            ACV Range With Customer
+          Customer Type / ACV Charts
           </Typography>
         </Grid>
         <Grid>
