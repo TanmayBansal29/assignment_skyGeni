@@ -1,8 +1,9 @@
+import ACVRangeChartComponent from "./components/ACVRangeChartComponent";
 
 function App() {
   return (
     <div>
-      Hello World
+      <ACVRangeChartComponent />
     </div>
   );
 }
