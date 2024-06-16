@@ -11,9 +11,8 @@ const useFetchData = (url) => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    },[]);
 
     return data;
 }
-
 export default useFetchData

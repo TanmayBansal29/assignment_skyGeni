@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 
 const DoughnutChart = ({ data, totalAcv }) => {
     const svgRef = useRef();
-    console.log("totalllll", totalAcv)
+    // console.log("totalllll", totalAcv)
 
     useEffect(() => {
         const svg = d3.select(svgRef.current);
@@ -74,7 +74,7 @@ const DoughnutChart = ({ data, totalAcv }) => {
             .attr('dy', '0.35em')
             .style('text-anchor', 'middle')
             .style('font-size', '12px')
-            .text(d => d.data.key);
+            .text(d => `${d.data.key}`);
 
             chartGroup.append('text')
             .attr('text-anchor', 'middle')

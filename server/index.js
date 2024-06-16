@@ -1,13 +1,12 @@
-// Importing express, cors and dotenv
+// Importing express and dotenv
 const express = require("express");
-const cors = require("cors");
 require("dotenv").config();
 
 // creating an instance of express
 const app = express();
 // Implementing the middlewware cors using the .use() method
 // cors is used for cross origin Resource Sharing
-app.use(cors());
+app.use(express.json());
 
 // Creating a PORT variable and using the process.env getting the value from the .env file
 const PORT = process.env.PORT || 8000

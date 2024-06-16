@@ -3,16 +3,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import "../styles/style.css";
 import useFetchData from "../utils/useFetchData";
 import BarChart from "./charts/BarChart";
 import DonutChart from "./charts/DonutChart";
 import LineChart from "./charts/LineChart";
+import "../styles/style.css";
 
 const ACVRangeChartComponent = () => {
   const url = "http://localhost:3000/api/v1/acvRangeData";
   const data2 = useFetchData(url);
-  // console.log(data2)
+  console.log("previous Data" , data2)
 
   const updateData = () => {
     let obj = {};
@@ -28,9 +28,9 @@ const ACVRangeChartComponent = () => {
   };
 
   const obj = updateData();
-
+//   console.log("Object", obj)
   const valObj = Object.values(obj);
-  // console.log(valObj)
+  //console.log(valObj)
   const sumVals = valObj.reduce((acc, crr) => {
     acc = acc + crr;
     return acc;
