@@ -1,7 +1,7 @@
 // src/components/LineChart.js
 import * as d3 from 'd3';
 import React, { useEffect, useRef } from 'react';
-import "../styles/style.css";
+import "../../styles/style.css";
 
 const LineChart = ({ data }) => {
     const svgRef = useRef();
