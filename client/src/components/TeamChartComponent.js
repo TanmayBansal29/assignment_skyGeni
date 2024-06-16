@@ -11,13 +11,17 @@ import StackedBarChart from "./charts/StackedChart";
 import "../styles/style.css";
 
 const TeamChartComponent = () => {
+  // Declaring the URL
   const url = "http://localhost:3000/api/v1/teamData";
+  // Using the custom hook to fetch the data from the url
   const data2 = useFetchData(url);
-  console.log("Team data", data2);
+  //console.log("Team data", data2);
 
+  // created a function to update the data received according to the requirements
   const updatedata = () => {
     let obj = {};
     data2.map((data) => {
+      // Here requirement is to map the data according to the Team of created the object accordingly
       if (Object.hasOwnProperty(obj, data.Team)) {
         obj[data.Team] = obj[data.team] + Math.floor(data.acv);
       } else {
@@ -27,6 +31,7 @@ const TeamChartComponent = () => {
     return obj;
   };
 
+  // Creating the data making the groups according to the Team so that it can help in creation of stacked bar chart
   const updateDataStacked = d3
     .groups(data2, (d) => d.closed_fiscal_quarter)
     .map((group) => {
@@ -52,6 +57,7 @@ const TeamChartComponent = () => {
       };
     });
 
+  // Defined the Keys
   const keys = [
     "AsiaPac",
     "Enterprise",
@@ -59,6 +65,7 @@ const TeamChartComponent = () => {
     "NorthAmerica",
     "LatinAmerica",
   ];
+  // Defined the Colors
   const colors = ["#1a5276", "#287233", "#992e2e", "#6e2c70", "#1e6666"];
 
   let obj = updatedata();

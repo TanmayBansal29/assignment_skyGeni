@@ -5,13 +5,17 @@ import DonutChart from './charts/DonutChart';
 import StackedBarChart from './charts/StackedChart';
 
 const CustomerTypeChartComponent = () => {
+  // Declaring the URL
   const url = "http://localhost:3000/api/v1/customerTypeData";
+  // Using the custom hook to fetch the data from the url
   const data2 = useFetchData(url)
   //console.log(data2)
 
+  // created a function to update the data received according to the requirements
   const updateD = () => {
     let obj = {};
     data2.map((data) => {
+      // Here requirement is to map the data according to the Customer Type of created the object accordingly
         if(Object.hasOwnProperty(obj, data.Cust_Type)) {
             obj[data.Cust_Type] = obj[data.Cust_Type] + Math.floor(data.acv)
         } else {
